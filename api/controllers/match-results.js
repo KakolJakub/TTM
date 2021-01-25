@@ -13,10 +13,11 @@ exports.matchResults_get_all = (req, res, next) => {
 };
 
 exports.matchResults_new = (req, res, next) => {
-    const matchResult = new MatchResult({
+  var current = new Date();  
+  const matchResult = new MatchResult({
       _id: new mongoose.Types.ObjectId(),
       winner: req.body.winner,
-      //date: new Date().format('m-d-Y h:i:s'), //TODO: implement this function
+      date: current.toLocaleString(),
     });
     matchResult
       .save()
@@ -42,11 +43,13 @@ exports.matchResults_new = (req, res, next) => {
   };
   
   exports.matchResults_change = (req, res, next) => {
+    var current = new Date();  
     const id = req.params.matchResultId;
     MatchResult.findByIdAndUpdate(
       id,
       {
         winner: req.body.winner,
+        date: current.toLocaleString(),
       },
       { new: true }
     )
