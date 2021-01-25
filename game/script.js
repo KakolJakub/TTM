@@ -8,6 +8,7 @@ const WINNING_COMBINATIONS = [
     [0, 4, 8],
     [2, 4, 6]
 ]
+
 const X_CLASS = 'x'
 const CRC_CLASS = 'crc'
 const cellElements = document.querySelectorAll('[data-cell]')
@@ -52,6 +53,10 @@ function endGame(draw) {
         winningMessageTextElement.innerText = 'Draw!'
     } else {
         winningMessageTextElement.innerText = `${crcTurn ? "Circles  " : "X's  "} Won!`
+        
+        //const matchResultController = require('.api/controllers/match-results')
+        //matchResultController.matchResults_new(crcTurn)
+        
     }
     winningMessageElement.classList.add('show')
 }

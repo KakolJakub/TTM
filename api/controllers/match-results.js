@@ -12,6 +12,33 @@ exports.matchResults_get_all = (req, res, next) => {
     .catch((err) => res.status(500).json({wiadomość: err}));
 };
 
+
+function matchResults_new(crcTurn){
+  if(crcTurn){
+    var _winner = 'o';
+  }
+  else{
+    var _winner = 'x';
+  }
+  return exports.addResult = (req, res, next) => {
+    var current = new Date();  
+    const matchResult = new MatchResult({
+        _id: new mongoose.Types.ObjectId(),
+        winner: _winner,
+        date: current.toLocaleString(),
+      });
+      matchResult
+        .save()
+        .then((doc) => {
+          res.status(200).json({
+            wiadomość: 'Dodano nowy wynik',
+            info: doc,
+          });
+        })
+        .catch((err) => res.status(500).json({ wiadomość: err }));
+    };
+}
+
 exports.matchResults_new = (req, res, next) => {
   var current = new Date();  
   const matchResult = new MatchResult({
