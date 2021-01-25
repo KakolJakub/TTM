@@ -5,11 +5,11 @@ const matchResultSchema = mongoose.Schema({
     winner: {
         type: String,
         required: true,
-    }
+    },
     date: {
         type: String,
         required: true,
-    }
+    },
 });
 
 module.exports = mongoose.model('MatchResult', matchResultSchema);
